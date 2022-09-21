@@ -1,3 +1,6 @@
 {
-  "titleApps": "Todo Apps"
+  "titleApps": "Todo Apps",
+  "login": "Login",
+  "completed": "Selesai",
+  "welcome": "Selamat Datang"
 }

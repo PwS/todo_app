@@ -16,7 +16,6 @@ class ListTaskCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(task);
     return ListTile(
         title: Text(task.titleTask,
             style: TextStyle(
@@ -24,9 +23,11 @@ class ListTaskCard extends StatelessWidget {
                     task.isCompleted ? TextDecoration.lineThrough : null)),
         trailing: Checkbox(
           value: task.isCompleted,
-          onChanged: (value) {
-            context.read<MainTaskBloc>().add(UpdateTaskEvent(task: task));
-          },
+          onChanged: task.isDeleted
+              ? null
+              : (value) {
+                  context.read<MainTaskBloc>().add(UpdateTaskEvent(task: task));
+                },
         ),
         onLongPress: () => _removeOrDeleteTask(context, task));
   }

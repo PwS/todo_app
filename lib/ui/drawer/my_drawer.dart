@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:todo_app/state_management/main_task/main_task_bloc.dart';
+import 'package:todo_app/state_management/theme_handler/theme_handler_bloc.dart';
 import 'package:todo_app/ui/pages/completed_task/completed_page.dart';
 import 'package:todo_app/ui/pages/main_task/main_task_page.dart';
+import 'package:todo_app/utils/enum/app_theme_enum.dart';
 
 class MyDrawer extends StatelessWidget {
   const MyDrawer({Key? key}) : super(key: key);
@@ -44,6 +46,17 @@ class MyDrawer extends StatelessWidget {
                     title: const Text('Tasks Completed'),
                     trailing: Text('${state.removedTasks.length}'),
                   ),
+                );
+              },
+            ),
+            BlocBuilder<ThemeHandlerBloc, ThemeHandlerState>(
+              builder: (context, state) {
+                return Switch(
+                  value: state.appTheme == AppTheme.light ? false : true,
+                  onChanged: (newValue) {
+                    context.read<ThemeHandlerBloc>().add(SwitchThemeEvent(
+                        newValue ? AppTheme.dark : AppTheme.light));
+                  },
                 );
               },
             )

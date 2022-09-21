@@ -42,10 +42,9 @@ class AddTaskSection extends StatelessWidget {
                       var task = MainTask(
                           idTask: GUIDGen.generate(),
                           titleTask: addTaskTextEditingController.text);
-                      print(task);
-                   /*   context
+                      context
                           .read<MainTaskBloc>()
-                          .add(AddTaskEvent(task: task));*/
+                          .add(AddTaskEvent(task: task));
                       Navigator.pop(context);
                     },
                     child: const Text('Add'))

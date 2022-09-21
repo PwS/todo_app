@@ -7,9 +7,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:todo_app/db/database.dart';
 import 'package:todo_app/services/router_generator.dart';
 import 'package:todo_app/state_management/main_task/main_task_bloc.dart';
+import 'package:todo_app/state_management/theme_handler/theme_handler_bloc.dart';
 import 'package:todo_app/ui/pages/main_task/main_task_page.dart';
+import 'package:todo_app/utils/config/app_theme.dart';
 import 'package:todo_app/utils/config/bloc_observer.dart';
 import 'package:todo_app/utils/constant/constant.dart';
+import 'package:todo_app/utils/enum/app_theme_enum.dart';
 import 'package:todo_app/utils/theme/colour_palette.dart';
 
 Future<void> main() async {
@@ -41,8 +44,6 @@ Future<void> main() async {
     },
     blocObserver: AppBlocObserver(),
   );
-
-  runApp(const MyAppMobile());
 }
 
 class MyAppMobile extends StatelessWidget {
@@ -50,16 +51,28 @@ class MyAppMobile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<MainTaskBloc>(
-      create: (context) => MainTaskBloc(),
-      child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: ConstantValue.titleApps.tr(),
-        supportedLocales: context.supportedLocales,
-        localizationsDelegates: context.localizationDelegates,
-        locale: context.locale,
-        home: const MainTaskPage(),
-        onGenerateRoute: RouterGenerator.onGenerateRoute,
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (context) => ThemeHandlerBloc()),
+        BlocProvider(create: (context) => MainTaskBloc()),
+      ],
+      child: BlocBuilder<ThemeHandlerBloc, ThemeHandlerState>(
+        builder: (context, state) {
+          return MaterialApp(
+            debugShowCheckedModeBanner: false,
+            title: ConstantValue.titleApps.tr(),
+            supportedLocales: context.supportedLocales,
+            localizationsDelegates: context.localizationDelegates,
+            locale: context.locale,
+            theme: state.appTheme == AppTheme.light
+                ? AppThemes.appThemeData[AppTheme.light]
+                : AppThemes.appThemeData[AppTheme.dark],
+            home: Builder(builder: (context) {
+              return const MainTaskPage();
+            }),
+            onGenerateRoute: RouterGenerator.onGenerateRoute,
+          );
+        },
       ),
     );
   }
