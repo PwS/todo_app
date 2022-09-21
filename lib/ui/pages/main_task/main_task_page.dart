@@ -30,18 +30,12 @@ class _MainTaskPageState extends State<MainTaskPage> {
         return Scaffold(
           appBar: AppBar(
             title: const Text('Tasks App'),
-            actions: [
-              IconButton(
-                onPressed: () {},
-                icon: const Icon(Icons.add),
-              )
-            ],
           ),
           drawer: const MyDrawer(),
           body: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-               Center(
+              Center(
                 child: Chip(
                   label: Text(
                     '${state.allTask.length} Tasks',

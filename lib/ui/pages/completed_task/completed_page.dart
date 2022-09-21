@@ -16,14 +16,8 @@ class CompletedPage extends StatelessWidget {
         return Scaffold(
           appBar: AppBar(
             title: const Text('Completed Task'),
-            actions: [
-              IconButton(
-                onPressed: () {},
-                icon: const Icon(Icons.add),
-              )
-            ],
           ),
-          drawer: MyDrawer(),
+          drawer: const MyDrawer(),
           body: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
