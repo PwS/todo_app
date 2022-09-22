@@ -56,7 +56,8 @@ class AddTaskSection extends StatelessWidget {
                           idTask: GUIDGen.generate(),
                           titleTask: addTaskTitleTextEditingController.text,
                           descriptionTask:
-                              addTaskDescriptionTextEditingController.text);
+                              addTaskDescriptionTextEditingController.text,
+                          date: DateTime.now().toString());
                       context
                           .read<MainTaskBloc>()
                           .add(AddTaskEvent(task: task));

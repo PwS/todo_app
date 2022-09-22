@@ -34,13 +34,3 @@ class TaskListSection extends StatelessWidget {
     );
   }
 }
-
-/*
-Expanded(
-child: ListView.builder(
-itemCount: taskList.length,
-itemBuilder: (context, index) {
-var task = taskList[index];
-return ListTaskCard(task: task);
-}),
-);*/
