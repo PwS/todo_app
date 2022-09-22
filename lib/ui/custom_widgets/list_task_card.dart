@@ -18,6 +18,7 @@ class ListTaskCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
         title: Text(task.titleTask,
+            overflow: TextOverflow.ellipsis,
             style: TextStyle(
                 decoration:
                     task.isCompleted ? TextDecoration.lineThrough : null)),

@@ -45,7 +45,7 @@ class MyDrawer extends StatelessWidget {
                       Navigator.of(context).pushNamed(CompletedPage.idPage),
                   child: ListTile(
                     leading: const Icon(Icons.recycling),
-                    title: const Text('Tasks Completed'),
+                    title: const Text('Tasks Removed'),
                     trailing: Text('${state.removedTasks.length}'),
                   ),
                 );

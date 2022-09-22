@@ -7,7 +7,7 @@ import 'package:todo_app/ui/pages/main_task/task_list_section.dart';
 class CompletedPage extends StatelessWidget {
   const CompletedPage({Key? key}) : super(key: key);
 
-  static const idPage = 'completedTaskPage';
+  static const idPage = 'deletedTaskPage';
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +15,7 @@ class CompletedPage extends StatelessWidget {
       builder: (context, state) {
         return Scaffold(
           appBar: AppBar(
-            title: const Text('Completed Task'),
+            title: const Text('Deleted Task'),
           ),
           drawer: const MyDrawer(),
           body: Column(

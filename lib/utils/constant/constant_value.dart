@@ -6,4 +6,5 @@ class ConstantValue {
   static const String welcome = 'welcome';
   static const String completed = 'completed';
 
+  static const String emptyString = '';
 }

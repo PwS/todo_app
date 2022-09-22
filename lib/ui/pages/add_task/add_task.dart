@@ -9,7 +9,9 @@ class AddTaskSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    TextEditingController addTaskTextEditingController =
+    TextEditingController addTaskTitleTextEditingController =
+        TextEditingController();
+    TextEditingController addTaskDescriptionTextEditingController =
         TextEditingController();
     return Container(
       padding:
@@ -27,9 +29,20 @@ class AddTaskSection extends StatelessWidget {
             ),
             TextField(
               autofocus: true,
-              controller: addTaskTextEditingController,
+              controller: addTaskTitleTextEditingController,
               decoration: const InputDecoration(
                   label: Text('Title'), border: OutlineInputBorder()),
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            TextField(
+              autofocus: true,
+              minLines: 3,
+              maxLines: 5,
+              controller: addTaskDescriptionTextEditingController,
+              decoration: const InputDecoration(
+                  label: Text('Description'), border: OutlineInputBorder()),
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -41,7 +54,9 @@ class AddTaskSection extends StatelessWidget {
                     onPressed: () {
                       var task = MainTask(
                           idTask: GUIDGen.generate(),
-                          titleTask: addTaskTextEditingController.text);
+                          titleTask: addTaskTitleTextEditingController.text,
+                          descriptionTask:
+                              addTaskDescriptionTextEditingController.text);
                       context
                           .read<MainTaskBloc>()
                           .add(AddTaskEvent(task: task));
