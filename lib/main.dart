@@ -8,7 +8,7 @@ import 'package:todo_app/db/database.dart';
 import 'package:todo_app/services/router_generator.dart';
 import 'package:todo_app/state_management/main_task/main_task_bloc.dart';
 import 'package:todo_app/state_management/theme_handler/theme_handler_bloc.dart';
-import 'package:todo_app/ui/pages/main_task/main_task_page.dart';
+import 'package:todo_app/ui/tabs_screen/tabs_screen.dart';
 import 'package:todo_app/utils/config/app_theme.dart';
 import 'package:todo_app/utils/config/bloc_observer.dart';
 import 'package:todo_app/utils/constant/constant.dart';
@@ -67,9 +67,7 @@ class MyAppMobile extends StatelessWidget {
             theme: state.appTheme == AppTheme.light
                 ? AppThemes.appThemeData[AppTheme.light]
                 : AppThemes.appThemeData[AppTheme.dark],
-            home: Builder(builder: (context) {
-              return const MainTaskPage();
-            }),
+            home: const TabsScreen(),
             onGenerateRoute: RouterGenerator.onGenerateRoute,
           );
         },

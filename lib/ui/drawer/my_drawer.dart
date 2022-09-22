@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:todo_app/state_management/main_task/main_task_bloc.dart';
 import 'package:todo_app/state_management/theme_handler/theme_handler_bloc.dart';
 import 'package:todo_app/ui/pages/completed_task/completed_page.dart';
-import 'package:todo_app/ui/pages/main_task/main_task_page.dart';
+import 'package:todo_app/ui/tabs_screen/tabs_screen.dart';
 import 'package:todo_app/utils/enum/app_theme_enum.dart';
 
 class MyDrawer extends StatelessWidget {
@@ -26,11 +26,13 @@ class MyDrawer extends StatelessWidget {
               builder: (context, state) {
                 return GestureDetector(
                   onTap: () =>
-                      Navigator.of(context).pushNamed(MainTaskPage.idPage),
+                      Navigator.of(context).pushNamed(TabsScreen.idPage),
                   child: ListTile(
                     leading: const Icon(Icons.folder_special),
                     title: const Text('My Tasks'),
-                    trailing: Text('${state.allTask.length}'),
+                    trailing: Text(
+                      '${state.pendingTask.length} | ${state.completedTask.length} ',
+                    ),
                   ),
                 );
               },
@@ -42,7 +44,7 @@ class MyDrawer extends StatelessWidget {
                   onTap: () =>
                       Navigator.of(context).pushNamed(CompletedPage.idPage),
                   child: ListTile(
-                    leading: const Icon(Icons.folder_special),
+                    leading: const Icon(Icons.recycling),
                     title: const Text('Tasks Completed'),
                     trailing: Text('${state.removedTasks.length}'),
                   ),
